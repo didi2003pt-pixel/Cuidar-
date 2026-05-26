@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1d4ed8" />
+  <meta name="description" content="Cuidar+ Família — coordenação familiar de cuidados." />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+  <title>Cuidar+ Família</title>
+  <style>
+    :root{
+      --bg:#f8f6ef; --surface:#fff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0;
+      --blue:#1d4ed8; --blue2:#1e3a8a; --blue-soft:#dbeafe; --green:#047857; --green-soft:#d1fae5;
+      --amber:#b45309; --amber-soft:#fef3c7; --red:#b91c1c; --red-soft:#fee2e2; --slate-soft:#f1f5f9;
+      --shadow:0 10px 30px rgba(15,23,42,.08); --radius:24px;
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;}
+    button,input,select,textarea{font:inherit} button{cursor:pointer} .app{min-height:100svh;max-width:480px;margin:0 auto;background:#fbfaf6;box-shadow:0 0 40px rgba(15,23,42,.14);position:relative;}
+    .header{position:sticky;top:0;z-index:5;background:rgba(251,250,246,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:16px 18px calc(14px + env(safe-area-inset-top));}
+    .header-row{display:flex;justify-content:space-between;align-items:center;gap:12px}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);font-weight:800;margin:0 0 2px}.title{font-size:22px;font-weight:950;margin:0;line-height:1.1}.icon-btn{border:0;background:var(--surface);border-radius:999px;width:46px;height:46px;display:grid;place-items:center;box-shadow:var(--shadow);color:var(--muted)}.icon-btn.danger{background:var(--red-soft);color:var(--red)}
+    main{padding:18px 18px 110px}.screen{display:none;animation:fade .18s ease-out}.screen.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;border:1px solid rgba(226,232,240,.45)}.hero{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:0;padding:20px}.hero p{color:#dbeafe}.section-head{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px}.section-head h2{font-size:19px;margin:0;font-weight:950}.row{display:flex;align-items:center;justify-content:space-between;gap:14px}.stack{display:grid;gap:12px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.muted{color:var(--muted)}.small{font-size:13px}.tiny{font-size:12px}.strong{font-weight:900}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:850;white-space:nowrap}.badge.neutral{background:var(--slate-soft);color:#334155}.badge.blue{background:var(--blue-soft);color:#1e40af}.badge.good{background:var(--green-soft);color:var(--green)}.badge.warn{background:var(--amber-soft);color:var(--amber)}.badge.danger{background:var(--red-soft);color:var(--red)}
+    .btn{border:0;border-radius:18px;min-height:48px;padding:0 16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn.primary{background:var(--blue);color:white}.btn.secondary{background:var(--slate-soft);color:var(--text)}.btn.danger{background:var(--red);color:white}.btn.full{width:100%}.btn.ghost{background:transparent;color:var(--blue);padding:0;min-height:auto}.med-card h3,.event-card h3{font-size:18px;margin:0 0 4px}.med-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}.alert{border-radius:22px;padding:14px}.alert.warn{background:var(--amber-soft);color:var(--amber)}.alert.danger{background:var(--red-soft);color:var(--red)}.alert.good{background:var(--green-soft);color:var(--green)}
+    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.info-box{background:#f8fafc;border-radius:18px;padding:12px}.info-box p{margin:0}.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:8}.nav button{border:0;background:transparent;color:var(--muted);border-radius:18px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;font-size:11px;font-weight:850}.nav button.active{background:#eff6ff;color:var(--blue2)}.nav svg,.icon{width:21px;height:21px}.search{width:100%;height:50px;border:1px solid var(--line);border-radius:18px;padding:0 14px;background:white}.doc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.avatar{width:48px;height:48px;border-radius:18px;background:var(--blue-soft);color:var(--blue2);display:grid;place-items:center;font-weight:950;font-size:18px}.emergency-big{background:var(--red);color:white;text-align:center;border-radius:30px;padding:26px 18px;box-shadow:var(--shadow)}.emergency-big .siren{font-size:44px}.fab{position:fixed;right:calc(50% - 225px);bottom:92px;border:0;border-radius:999px;width:56px;height:56px;background:var(--blue);color:white;box-shadow:0 12px 30px rgba(29,78,216,.35);font-size:28px;z-index:6}@media(max-width:520px){.fab{right:18px}}.onboarding{min-height:100svh;display:grid;place-items:center;padding:20px}.on-card{background:white;border-radius:32px;padding:24px;box-shadow:var(--shadow);max-width:420px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.brand-logo{width:58px;height:58px;border-radius:20px;background:var(--blue-soft);display:grid;place-items:center;font-size:30px}.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0}.progress span{height:8px;border-radius:999px;background:var(--line)}.progress span.done{background:var(--blue)}.legal{font-size:11px;color:var(--muted);text-align:center;margin-top:12px}.hidden{display:none!important}.toast{position:fixed;left:50%;bottom:94px;transform:translateX(-50%);background:#0f172a;color:white;border-radius:18px;padding:12px 16px;box-shadow:var(--shadow);font-weight:750;max-width:420px;width:calc(100% - 36px);z-index:20;display:none}.toast.show{display:block;animation:fade .15s ease-out}.checklist label{display:flex;gap:9px;align-items:center;margin:9px 0;font-size:14px}.disclaimer{font-size:12px;line-height:1.4;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div id="onboarding" class="onboarding">
+    <section class="on-card">
+      <div class="brand"><div class="brand-logo">💙</div><div><p class="kicker">Cuidar+ Família</p><h1 class="title">Sem caos. Sem mensagens perdidas.</h1></div></div>
+      <div id="onStepBox" class="card" style="background:#f7fbf8;box-shadow:none"></div>
+      <div class="progress"><span></span><span></span><span></span><span></span></div>
+      <button id="onNext" class="btn primary full">Continuar</button>
+      <p class="legal">Dados de saúde exigem consentimento, permissões e proteção reforçada.</p>
+    </section>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="header">
+      <div class="header-row">
+        <div><p class="kicker">Cuidar+ Família</p><h1 class="title">Cuidar da Mãe</h1></div>
+        <div class="row" style="gap:8px"><button class="icon-btn" data-toast="Sem notificações novas">🔔</button><button class="icon-btn danger" data-screen="emergency">🚨</button></div>
+      </div>
+    </header>
+    <main>
+      <section id="today" class="screen active"></section>
+      <section id="meds" class="screen"></section>
+      <section id="calendar" class="screen"></section>
+      <section id="docs" class="screen"></section>
+      <section id="family" class="screen"></section>
+      <section id="symptoms" class="screen"></section>
+      <section id="emergency" class="screen"></section>
+    </main>
+    <button class="fab" data-screen="symptoms" aria-label="Registar sintoma">+</button>
+    <nav class="nav" aria-label="Navegação principal">
+      <button class="active" data-screen="today">🏠<span>Hoje</span></button>
+      <button data-screen="meds">💊<span>Medicação</span></button>
+      <button data-screen="calendar">📅<span>Calendário</span></button>
+      <button data-screen="docs">📄<span>Documentos</span></button>
+      <button data-screen="family">👥<span>Família</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast"></div>
+
+<script>
+const state={
+  step:0,
+  recipient:{name:'Maria Fernandes',shortName:'Mãe',age:79,address:'Coimbra',autonomy:'Parcial',mobility:'Anda com bengala',allergies:'Penicilina',conditions:'Hipertensão, diabetes tipo 2',doctor:'Dra. Ana Martins',pharmacy:'Farmácia Central',hospital:'CHUC',emergencyNotes:'Levar lista de medicação atual. Contactar João primeiro.'},
+  meds:[
+    {id:1,name:'Metformina',dosage:'850 mg',time:'09:00',instructions:'Depois do pequeno-almoço',status:'tomado',confirmedBy:'D. Teresa',confirmedAt:'09:08'},
+    {id:2,name:'Losartan',dosage:'50 mg',time:'13:00',instructions:'Com água. Não duplicar dose.',status:'pendente',confirmedBy:null,confirmedAt:null},
+    {id:3,name:'Atorvastatina',dosage:'20 mg',time:'21:00',instructions:'À noite',status:'pendente',confirmedBy:null,confirmedAt:null}
+  ],
+  appointments:[
+    {id:1,title:'Consulta de diabetes',type:'Consulta',when:'Amanhã, 10:30',location:'Centro de Saúde Norton de Matos',responsible:'Sofia',checklist:['Cartão de cidadão','Últimas análises','Lista de sintomas','Medicação atual']},
+    {id:2,title:'Análises ao sangue',type:'Exame',when:'Sexta, 08:15',location:'Laboratório Germano de Sousa',responsible:'João',checklist:['Jejum','Credencial','Água']}
+  ],
+  docs:[
+    {title:'Análises março 2026',type:'Análises',date:'18 mar',tags:['diabetes','consulta']},
+    {title:'Receita eletrónica',type:'Receita',date:'02 abr',tags:['medicação']},
+    {title:'Carta de alta',type:'Relatório',date:'11 jan',tags:['hospital']}
+  ],
+  members:[
+    {name:'João',role:'Administrador',status:'Responsável hoje',initials:'J'},
+    {name:'Sofia',role:'Familiar',status:'Transporte amanhã',initials:'S'},
+    {name:'Luís',role:'Leitura',status:'Sem tarefas',initials:'L'},
+    {name:'D. Teresa',role:'Cuidadora',status:'Turno 09:00-13:00',initials:'T'}
+  ],
+  symptoms:[
+    {type:'Tonturas',severity:'Moderado',note:'Ao levantar-se. Passou após sentar.',date:'Hoje, 08:40',by:'D. Teresa'},
+    {type:'Sono',severity:'Leve',note:'Dormiu pior do que o habitual.',date:'Ontem, 21:30',by:'João'},
+    {type:'Queda',severity:'Crítico',note:'Escorregou na casa de banho. Sem ferida visível.',date:'Dom, 19:10',by:'Sofia'}
+  ],
+  tasks:[
+    {title:'Confirmar transporte para consulta',assignedTo:'Sofia',due:'Hoje',status:'pendente'},
+    {title:'Carregar receita nova',assignedTo:'João',due:'Amanhã',status:'pendente'},
+    {title:'Comprar medicação',assignedTo:'Luís',due:'Sexta',status:'feito'}
+  ]
+};
+const $=sel=>document.querySelector(sel); const $$=sel=>[...document.querySelectorAll(sel)];
+const badge=(text,tone='neutral')=>`<span class="badge ${tone}">${text}</span>`;
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+function statusTone(s){return s==='tomado'?'good':s==='precisa'?'danger':s==='ignorado'?'neutral':'warn'}
+function statusLabel(s){return {tomado:'Tomado',pendente:'Pendente',precisa:'Ajuda',ignorado:'Não tomado'}[s]||s}
+function taskRow(t){return `<div class="card row"><div><p class="strong" style="margin:0">${esc(t.title)}</p><p class="muted small" style="margin:4px 0 0">${esc(t.assignedTo)} · ${esc(t.due)}</p></div>${badge(t.status==='feito'?'Feito':'Pendente',t.status==='feito'?'good':'warn')}</div>`}
+function profileCard(){const r=state.recipient;return `<div class="card"><div class="row"><div><h3 style="margin:0;font-size:18px">${r.name}</h3><p class="muted small" style="margin:4px 0 0">${r.age} anos · ${r.address}</p></div>${badge('Autonomia '+r.autonomy,'blue')}</div><div class="profile-grid"><div class="info-box"><p class="strong small">Médico</p><p class="muted small">${r.doctor}</p></div><div class="info-box"><p class="strong small">Farmácia</p><p class="muted small">${r.pharmacy}</p></div><div class="info-box"><p class="strong small">Mobilidade</p><p class="muted small">${r.mobility}</p></div><div class="info-box"><p class="strong small">Hospital</p><p class="muted small">${r.hospital}</p></div></div></div>`}
+function renderToday(){const last=[...state.meds].reverse().find(m=>m.status==='tomado');const next=state.meds.find(m=>m.status==='pendente');$('#today').innerHTML=`${profileCard()}<div style="height:16px"></div><div class="card hero"><div class="row"><div><p style="margin:0">Estado de hoje</p><h2 style="font-size:24px;margin:4px 0 0">Tudo estável, com 1 alerta</h2><p class="small" style="margin:12px 0 0">Última nota: tonturas ligeiras ao levantar. Monitorizar e mencionar na consulta.</p></div>${badge('Atenção','warn')}</div></div><div style="height:12px"></div><div class="grid2"><div class="card"><p class="muted tiny" style="margin:0">Última toma</p><p class="strong" style="margin:4px 0">${last?last.name:'—'}</p><p class="muted small" style="margin:0">${last?`${last.confirmedAt} por ${last.confirmedBy}`:'Sem registo'}</p></div><div class="card"><p class="muted tiny" style="margin:0">Próxima consulta</p><p class="strong" style="margin:4px 0">Amanhã</p><p class="muted small" style="margin:0">10:30 · Sofia</p></div></div><div class="section-head"><h2>💊 Próxima medicação</h2><button class="btn ghost" data-screen="meds">Ver tudo</button></div>${next?`<div class="card med-card"><div class="row"><div><h3>${next.name}</h3><p class="muted" style="margin:0">${next.dosage} · ${next.time}</p><p class="muted small" style="margin:6px 0 0">${next.instructions}</p></div>${badge('Pendente','warn')}</div><button class="btn primary full" style="margin-top:14px" onclick="confirmMed(${next.id})">✓ Confirmar toma</button></div>`:`<div class="alert good strong">Medicação do dia confirmada.</div>`}<div class="section-head"><h2>⚠️ Alertas e tarefas</h2></div><div class="stack"><div class="alert danger"><p class="strong" style="margin:0">Queda registada no domingo</p><p class="small" style="margin:4px 0 0">Rever casa de banho e mencionar ao médico.</p></div>${state.tasks.filter(t=>t.status!=='feito').map(taskRow).join('')}</div>`}
+function medCard(m){return `<div class="card med-card"><div class="row"><div><h3>${m.name}</h3><p class="muted" style="margin:0">${m.dosage} · ${m.time}</p><p class="muted small" style="margin:6px 0 0">${m.instructions}</p></div>${badge(statusLabel(m.status),statusTone(m.status))}</div>${m.confirmedAt?`<p class="small" style="color:var(--green);margin:12px 0 0">Confirmado às ${m.confirmedAt} por ${m.confirmedBy}</p>`:''}<div class="med-actions"><button class="btn secondary" onclick="setMed(${m.id},'tomado')">Tomei</button><button class="btn secondary" onclick="setMed(${m.id},'ignorado')">Não</button><button class="btn secondary" onclick="setMed(${m.id},'precisa')">Ajuda</button></div></div>`}
+function renderMeds(){ $('#meds').innerHTML=`<div class="section-head"><h2>💊 Plano de medicação</h2><button class="btn primary" data-toast="Adicionar medicamento: próximo passo ligado à base de dados.">+ Adicionar</button></div><div class="alert warn"><p class="strong" style="margin:0">Nota importante</p><p class="small" style="margin:4px 0 0">A app organiza informação introduzida pela família/cuidador. Não altera medicação nem substitui profissionais de saúde.</p></div><div style="height:12px"></div><div class="stack">${state.meds.map(medCard).join('')}</div>` }
+function renderCalendar(){ $('#calendar').innerHTML=`<div class="section-head"><h2>📅 Calendário de saúde</h2><button class="btn primary" data-toast="Criar evento: pronto para ligar ao backend.">+ Evento</button></div><div class="stack">${state.appointments.map(a=>`<div class="card event-card"><div class="row"><div>${badge(a.type,'blue')}<h3 style="margin-top:10px">${a.title}</h3><p class="muted" style="margin:0">${a.when}</p><p class="muted small" style="margin:4px 0 0">${a.location}</p></div>${badge(a.responsible,'good')}</div><div class="info-box checklist" style="margin-top:14px"><p class="strong small" style="margin:0 0 6px">Checklist pré-consulta</p>${a.checklist.map(x=>`<label><input type="checkbox"> ${x}</label>`).join('')}</div></div>`).join('')}</div>` }
+function renderDocs(){ $('#docs').innerHTML=`<div class="section-head"><h2>📄 Pasta digital</h2><button class="btn primary" data-toast="Upload local simulado. No produto real usa storage seguro.">+ Upload</button></div><input class="search" placeholder="Pesquisar receitas, análises, relatórios..." oninput="renderDocsList(this.value)"><div style="height:12px"></div><div class="grid3"><button class="btn secondary">Receitas</button><button class="btn secondary">Análises</button><button class="btn secondary">Relatórios</button></div><div id="docsList" class="stack" style="margin-top:12px"></div>`; renderDocsList('')}
+function renderDocsList(q=''){const list=state.docs.filter(d=>(d.title+d.type+d.tags.join(' ')).toLowerCase().includes(q.toLowerCase()));$('#docsList').innerHTML=list.map(d=>`<div class="card row"><div><p class="strong" style="margin:0">📄 ${d.title}</p><p class="muted small" style="margin:4px 0 0">${d.type} · ${d.date}</p><div class="doc-tags">${d.tags.map(t=>badge(t)).join('')}</div></div><span class="muted">🔒</span></div>`).join('')||`<div class="alert warn">Nenhum documento encontrado.</div>`}
+function renderFamily(){ $('#family').innerHTML=`<div class="section-head"><h2>👥 Família e permissões</h2><button class="btn primary" data-toast="Convite simulado. Requer email/telemóvel no backend.">+ Convidar</button></div><div class="alert good"><p class="strong" style="margin:0">Acesso por papéis</p><p class="small" style="margin:4px 0 0">Administrador, familiar, cuidador e leitura apenas. Cada ação fica registada.</p></div><div style="height:12px"></div><div class="stack">${state.members.map(m=>`<div class="card row"><div class="row" style="justify-content:flex-start"><div class="avatar">${m.initials}</div><div><p class="strong" style="margin:0">${m.name}</p><p class="muted small" style="margin:4px 0 0">${m.role}</p></div></div>${badge(m.status,m.status.includes('Responsável')?'good':'neutral')}</div>`).join('')}</div><div class="section-head"><h2>Tarefas</h2></div><div class="stack">${state.tasks.map(taskRow).join('')}</div>`}
+function renderSymptoms(){ $('#symptoms').innerHTML=`<div class="section-head"><h2>💙 Sintomas e eventos</h2><button class="btn primary" onclick="addSymptom()">+ Registar</button></div><div class="grid3">${['Dor','Tonturas','Queda','Febre','Sono','Humor'].map(x=>`<button class="btn secondary" onclick="quickSymptom('${x}')">${x}</button>`).join('')}</div><div class="stack" style="margin-top:14px">${state.symptoms.map(s=>`<div class="card"><div class="row"><div><p class="strong" style="margin:0">${s.type}</p><p class="muted small" style="margin:4px 0 0">${s.date} · ${s.by}</p></div>${badge(s.severity,s.severity==='Crítico'?'danger':s.severity==='Moderado'?'warn':'neutral')}</div><p class="small" style="margin:12px 0 0">${s.note}</p></div>`).join('')}</div><button class="btn secondary full" style="margin-top:14px" data-toast="Exportação PDF será gerada no backend.">Exportar resumo para consulta</button>`}
+function renderEmergency(){const r=state.recipient;$('#emergency').innerHTML=`<div class="section-head"><h2>🚨 Emergência</h2></div><div class="emergency-big"><div class="siren">🚨</div><h2 style="margin:10px 0 4px">Pedir ajuda à família</h2><p style="margin:0 0 16px;color:#fee2e2">Envia alerta aos contactos prioritários e regista a ocorrência.</p><button class="btn full" style="background:white;color:var(--red);height:64px;font-size:18px" onclick="toast('Alerta familiar simulado enviado.')">Enviar alerta</button></div><div style="height:12px"></div><div class="alert warn"><p class="strong" style="margin:0">Não substitui 112 nem SNS 24</p><p class="small" style="margin:4px 0 0">Em perigo imediato, ligar 112. Para orientação de saúde, contactar SNS 24.</p></div><div style="height:12px"></div><div class="card"><h3 style="margin:0">Dados essenciais</h3><p class="small muted">Alergias: ${r.allergies}</p><p class="small muted">Doenças: ${r.conditions}</p><p class="small muted">Notas: ${r.emergencyNotes}</p></div><div style="height:12px"></div><div class="card"><h3 style="margin:0 0 12px">Contactos prioritários</h3><div class="stack"><button class="btn secondary full">💬 João · ligar primeiro</button><button class="btn secondary full">💬 Sofia · transporte</button></div></div>`}
+function renderAll(){renderToday();renderMeds();renderCalendar();renderDocs();renderFamily();renderSymptoms();renderEmergency();bindButtons()}
+function bindButtons(){$$('[data-screen]').forEach(b=>b.onclick=()=>showScreen(b.dataset.screen));$$('[data-toast]').forEach(b=>b.onclick=()=>toast(b.dataset.toast))}
+function showScreen(id){$$('.screen').forEach(s=>s.classList.toggle('active',s.id===id));$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));window.scrollTo(0,0)}
+function confirmMed(id){setMed(id,'tomado')}
+function setMed(id,status){state.meds=state.meds.map(m=>m.id===id?{...m,status,confirmedBy:status==='tomado'?'João':null,confirmedAt:status==='tomado'?'Agora':null}:m);renderAll();toast(status==='tomado'?'Toma confirmada.':'Estado atualizado.');}
+function quickSymptom(type){state.symptoms.unshift({type,severity:type==='Queda'?'Crítico':'Leve',note:'Registo rápido adicionado no protótipo.',date:'Agora',by:'João'});renderAll();showScreen('symptoms');toast('Sintoma registado.')}
+function addSymptom(){const type=prompt('Tipo de sintoma/evento:','Dor'); if(!type)return; state.symptoms.unshift({type,severity:'Leve',note:'Nota adicionada manualmente.',date:'Agora',by:'João'});renderAll();toast('Registo adicionado.')}
+function renderOnboarding(){const steps=[['Quem está a cuidar?','Cria o grupo familiar e define quem pode ver, editar ou apenas acompanhar.'],['Quem é a pessoa cuidada?','Guarda contactos, alergias, doenças conhecidas e notas essenciais.'],['Primeira medicação','Adiciona horários e responsáveis. A app organiza confirmações, não dá aconselhamento clínico.'],['Próxima consulta','Atribui transporte, documentos e checklist para nada ficar esquecido.']];const [t,d]=steps[state.step];$('#onStepBox').innerHTML=`${badge('Passo '+(state.step+1)+' de '+steps.length,'blue')}<h2 style="font-size:25px;margin:14px 0 6px">${t}</h2><p class="muted" style="line-height:1.55;margin:0">${d}</p>`;$$('.progress span').forEach((s,i)=>s.classList.toggle('done',i<=state.step));$('#onNext').textContent=state.step===steps.length-1?'Entrar no dashboard':'Continuar'}
+$('#onNext').onclick=()=>{if(state.step<3){state.step++;renderOnboarding()}else{$('#onboarding').classList.add('hidden');$('#app').classList.remove('hidden');renderAll();}};
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
+renderOnboarding();
+</script>
+</body>
+</html>

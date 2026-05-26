@@ -1,0 +1,16 @@
+{
+  "name": "Cuidar+ Família",
+  "short_name": "Cuidar+",
+  "description": "Coordenação familiar de cuidados, medicação, consultas e documentos.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8f6ef",
+  "theme_color": "#1d4ed8",
+  "lang": "pt-PT",
+  "icons": [
+    { "src": "icons/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "icons/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
